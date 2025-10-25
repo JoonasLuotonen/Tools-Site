@@ -1,8 +1,5 @@
-
 'use client';
 import { useState } from 'react';
-
-export const metadata = { title: "Clarity Test" };
 
 export default function ClarityPage() {
   const [url, setUrl] = useState("");
@@ -11,6 +8,9 @@ export default function ClarityPage() {
   function handleRun(e) {
     e.preventDefault();
     setShowResults(true);
+    // TODO: later, call your API here and set results from the response
+    // fetch('/api/analyze', { method: 'POST', body: JSON.stringify({ url }) })
+    //   .then(r => r.json()).then(setData)
   }
 
   return (
@@ -63,7 +63,7 @@ export default function ClarityPage() {
               </div>
               <div className="card p-5">
                 <h3 className="mt-0">Consistency</h3>
-                <p>Reuse 1–2 primary CTA labels site‑wide to reduce cognitive load.</p>
+                <p>Reuse 1–2 primary CTA labels site-wide to reduce cognitive load.</p>
               </div>
               <div className="card p-5">
                 <h3 className="mt-0">Conversion</h3>
