@@ -67,17 +67,54 @@ export default function Home() {
       {/* Newsletter Section */}
       <section className="w-full py-20 px-4 bg-[#f5f7f9] flex justify-center">
         <div className="w-full max-w-3xl text-center">
-          {/* Paste Brevo embed here */}
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `
-${`<!-- Begin Brevo Form -->${`
-${`<!-- START - We recommend to place the below code in head tag of your website html  -->`} 
-<style>
-#sib-container input::placeholder { color: #c0ccda; }
-</style>
-<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-<!-- START - FORM -->
-<div class="sib-form" style="text-align: center; background-color: #f5f7f9;">
-  <div id="sib-form-container" class="sib-form-container">
-    <div id="sib-container" class="sib-container--larg
+          <iframe
+            src="/newsletter.html"
+            title="Newsletter signup"
+            className="w-full max-w-3xl h-[720px] border-none rounded-xl"
+          ></iframe>
+        </div>
+      </section>
+
+      {/* Tools List */}
+      <section className="w-full max-w-5xl grid md:grid-cols-2 gap-6 px-6 py-16">
+        <div className="border border-gray-200 rounded-2xl p-8 flex flex-col justify-between">
+          <div>
+            <h3 className="font-bold text-xl mb-2">Clarity Test</h3>
+            <p className="text-gray-600 mb-6">
+              Practical web page analysis on five axes with Quick Wins. Get your
+              clarity profile and what to fix.
+            </p>
+          </div>
+          <Link
+            href="/clarity-test"
+            className="bg-black text-white rounded-full px-6 py-3 text-sm font-bold self-start hover:bg-gray-800 transition"
+          >
+            Run the test
+          </Link>
+        </div>
+
+        <div className="border border-gray-200 rounded-2xl p-8 flex flex-col justify-between">
+          <div>
+            <h3 className="font-bold text-xl mb-2">More coming</h3>
+            <p className="text-gray-600 mb-6">
+              New small tools and experiments will appear here as they’re ready.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full flex flex-col items-center justify-center py-12 mt-10 border-t border-gray-200">
+        <Image
+          src="/JL_logoPPright.png"
+          alt="JL Pragmatic Play"
+          width={200}
+          height={50}
+        />
+        <p className="text-sm text-gray-500 mt-4">
+          © 2025 Joonas Luotonen. Pragmatic Play.
+        </p>
+      </footer>
+    </main>
+  );
+}
