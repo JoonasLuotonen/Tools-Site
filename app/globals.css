@@ -45,3 +45,9 @@ footer { @apply text-sm text-black/60; }
 .grid-cards { @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3; }
 .section { @apply py-12 md:py-20; }
 hr { @apply my-10 border-black/10; }
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;700&display=swap');
+body { font-family: 'Special Gothic', Arial, sans-serif; }
+h1, h2, h3 { font-family: 'Bebas Neue', Arial, sans-serif; letter-spacing: 0.5px; }
+
