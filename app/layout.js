@@ -1,3 +1,4 @@
+// NO "use client" here
 import "./globals.css";
 import Image from "next/image";
 import NavBar from "../components/NavBar";
@@ -13,9 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-white text-black">
         <NavBar />
-
         {children}
-
         <footer className="w-full border-t border-black/10 bg-[#f5f7f9]">
           <div className="container-wide py-12 flex flex-col items-center">
             <Image
