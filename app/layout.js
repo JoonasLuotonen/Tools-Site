@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
               alt="PRAGMATIC PLAY"
               width={220}
               height={60}
+              priority
             />
             <p className="mt-4 text-sm text-black/60">
               © {new Date().getFullYear()} Joonas Luotonen. Pragmatic Play.
