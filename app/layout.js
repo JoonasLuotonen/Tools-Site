@@ -1,51 +1,86 @@
-// app/layout.js
+"use client";
+
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const metadata = {
-  title: "TOOLS – Joonas Luotonen",
+  title: "TOOLS — Joonas Luotonen",
   description:
     "Small tools and experiments to bring more clarity into design, branding, and business.",
 };
 
+function NavItem({ href, label }) {
+  const pathname = usePathname();
+  const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+  return (
+    <Link
+      href={href}
+      className={`no-underline uppercase text-sm font-bold tracking-wide hover:opacity-80
+        ${isActive ? "underline decoration-black underline-offset-8" : "decoration-black/20 underline-offset-8"}`}
+    >
+      {label}
+    </Link>
+  );
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-white text-black font-sans">
-        {/* Header (single, global) */}
-        <header className="w-full max-w-6xl mx-auto flex justify-between items-center py-6 px-4 md:px-8 border-b border-gray-200">
-          <Link href="/" className="block">
-            <Image
-              src="/jl-monogrammi-extended.png"
-              alt="JL logo"
-              width={96}
-              height={48}
-              priority
-            />
-          </Link>
+      <body className="bg-white text-black">
+        {/* HEADER */}
+        <header className="w-full border-b border-black/10">
+          <div className="container-wide flex items-center justify-between py-5">
+            {/* LEFT: TOOLS (link to /) */}
+            <Link href="/" aria-label="Tools Home" className="shrink-0">
+              <Image
+                src="/tools.png"         // <- must exist
+                alt="TOOLS"
+                width={120}
+                height={36}
+                priority
+              />
+            </Link>
 
-          <nav className="flex gap-8 text-sm font-bold tracking-wide uppercase">
-            <Link href="/" className="hover:opacity-70">Home</Link>
-            <Link href="/clarity-test" className="hover:opacity-70">Clarity Test</Link>
-            <Link href="/about" className="hover:opacity-70">About</Link>
-          </nav>
+            {/* RIGHT: menu + JL on far right */}
+            <div className="flex items-center gap-8">
+              <nav className="flex items-center gap-8">
+                <NavItem href="/" label="HOME" />
+                <NavItem href="/clarity-test" label="CLARITY TEST" />
+                <NavItem href="/about" label="ABOUT" />
+              </nav>
+              <a
+                href="https://joonasluotonen.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="joonasluotonen.com"
+                className="block"
+              >
+                <Image
+                  src="/JL-monogrammiEXTENDED.png" // <- must exist
+                  alt="JL logo"
+                  width={80}
+                  height={40}
+                />
+              </a>
+            </div>
+          </div>
         </header>
 
-        {/* Page content */}
         {children}
 
-        {/* Footer (single, global) */}
-        <footer className="w-full border-t border-gray-200 mt-16">
-          <div className="max-w-6xl mx-auto flex flex-col items-center justify-center py-12">
+        {/* FOOTER */}
+        <footer className="w-full border-t border-black/10">
+          <div className="container-wide py-12 flex flex-col items-center">
             <Image
-              src="/jl-logo-ppright.png"
-              alt="JL Pragmatic Play"
-              width={200}
-              height={50}
+              src="/JL_logoPPright.png"  // <- must exist
+              alt="PRAGMATIC PLAY"
+              width={220}
+              height={60}
             />
-            <p className="text-sm text-gray-500 mt-4">
-              © 2025 Joonas Luotonen. Pragmatic Play.
+            <p className="mt-4 text-sm text-black/60">
+              © {new Date().getFullYear()} Joonas Luotonen. Pragmatic Play.
             </p>
           </div>
         </footer>
