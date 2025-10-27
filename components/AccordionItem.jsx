@@ -1,25 +1,19 @@
-// components/AccordionItem.jsx
 "use client";
 import { useState } from "react";
 
-export default function AccordionItem({ title, children, defaultOpen = false }) {
-  const [open, setOpen] = useState(defaultOpen);
+export default function AccordionItem({ title, children }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-black/10">
+    <div className="p-4">
       <button
         type="button"
-        onClick={() => setOpen(o => !o)}
-        aria-expanded={open}
-        className="w-full flex items-center justify-between py-3"
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between text-left"
       >
-        <span className="text-base font-semibold">{title}</span>
-        <span className={`transition-transform ${open ? "rotate-45" : ""}`}>+</span>
+        <span className="font-medium">{title}</span>
+        <span aria-hidden="true">{open ? "–" : "+"}</span>
       </button>
-      {open && (
-        <div className="pb-4 text-sm leading-relaxed">
-          {children}
-        </div>
-      )}
+      {open && <div className="mt-2 text-sm">{children}</div>}
     </div>
   );
 }
