@@ -34,7 +34,7 @@ export default function Home() {
 
           {/* Single primary CTA (no second button) */}
           <div className="mt-8">
-            <Link href="/clarity-test" className="btn btn-primary btn-pill">
+            <Link href="/clarity" className="btn btn-primary btn-pill">
               Go to Clarity Test
             </Link>
           </div>
