@@ -10,11 +10,8 @@ function NavItem({ href, label }) {
   return (
     <Link
       href={href}
-      className={`no-underline uppercase text-sm font-bold tracking-wide hover:opacity-80 ${
-        isActive
-          ? "underline decoration-black underline-offset-8"
-          : "decoration-black/20 underline-offset-8"
-      }`}
+      className={`no-underline uppercase text-sm font-bold tracking-wide hover:opacity-80
+        ${isActive ? "underline decoration-black underline-offset-8" : "decoration-black/20 underline-offset-8"}`}
     >
       {label}
     </Link>
@@ -26,18 +23,13 @@ export default function NavBar() {
     <header className="w-full border-b border-black/10">
       <div className="container-wide flex items-center justify-between py-5">
         <Link href="/" aria-label="Tools Home" className="shrink-0">
-          <Image
-            src="/tools.png"
-            alt="TOOLS"
-            width={120}
-            height={36}
-            priority
-          />
+          <Image src="/tools.png" alt="TOOLS" width={120} height={36} priority />
         </Link>
 
         <nav className="flex items-center gap-8">
           <NavItem href="/" label="HOME" />
-          <NavItem href="/clarity-test" label="CLARITY TEST" />
+          {/* IMPORTANT: point to /clarity, not /clarity-test */}
+          <NavItem href="/clarity" label="CLARITY TEST" />
           <NavItem href="/about" label="ABOUT" />
         </nav>
 
