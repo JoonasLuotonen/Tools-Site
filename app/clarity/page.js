@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import AccordionItem from "../components/AccordionItem.jsx";
+import AccordionItem from "../../components/AccordionItem.jsx";
 
 export default function ClarityPage() {
   const [url, setUrl] = useState("");
