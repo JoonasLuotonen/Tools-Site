@@ -11,18 +11,17 @@ export const metadata = {
     "Small tools and experiments to bring more clarity into design, branding, and business.",
 };
 
-function NavLink({ href, children }) {
+function NavItem({ href, label }) {
   const pathname = usePathname();
-  const isActive =
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <Link
       href={href}
       className={`no-underline uppercase text-sm font-bold tracking-wide hover:opacity-80
-        ${isActive ? "underline decoration-black underline-offset-8" : "decoration-black/20 underline-offset-4"}`}
+        ${isActive ? "underline decoration-black underline-offset-8" : "decoration-black/20 underline-offset-8"}`}
     >
-      {children}
+      {label}
     </Link>
   );
 }
@@ -33,24 +32,24 @@ export default function RootLayout({ children }) {
       <body className="bg-white text-black">
         {/* HEADER */}
         <header className="w-full border-b border-black/10">
-          <div className="container-wide flex items-center justify-between py-6">
-            {/* Left: TOOLS logo */}
+          <div className="container-wide flex items-center justify-between py-5">
+            {/* LEFT: TOOLS wordmark (link to /) */}
             <Link href="/" aria-label="Tools Home" className="shrink-0">
               <Image
-                src="/tools.png"
-                alt="TOOLS logo"
-                width={128}
-                height={38}
+                src="/tools.png"                // ensure /public/tools.png exists (case-sensitive)
+                alt="TOOLS"
+                width={120}
+                height={36}
                 priority
               />
             </Link>
 
-            {/* Right: menu + JL mark on the far right */}
+            {/* RIGHT: menu + JL logo at far right */}
             <div className="flex items-center gap-8">
               <nav className="flex items-center gap-8">
-                <NavLink href="/">Home</NavLink>
-                <NavLink href="/clarity-test">Clarity Test</NavLink>
-                <NavLink href="/about">About</NavLink>
+                <NavItem href="/" label="HOME" />
+                <NavItem href="/clarity-test" label="CLARITY TEST" />
+                <NavItem href="/about" label="ABOUT" />
               </nav>
 
               <a
@@ -61,7 +60,7 @@ export default function RootLayout({ children }) {
                 className="block"
               >
                 <Image
-                  src="/JL-monogrammiEXTENDED.png"
+                  src="/JL-monogrammiEXTENDED.png" // ensure /public/JL-monogrammiEXTENDED.png
                   alt="JL logo"
                   width={80}
                   height={40}
@@ -71,14 +70,14 @@ export default function RootLayout({ children }) {
           </div>
         </header>
 
-        {/* PAGE */}
+        {/* PAGE CONTENT */}
         {children}
 
-        {/* FOOTER */}
+        {/* FOOTER (kept simple; matches your site style) */}
         <footer className="w-full border-t border-black/10">
           <div className="container-wide py-12 flex flex-col items-center">
             <Image
-              src="/JL_logoPPright.png"
+              src="/JL_logoPPright.png"  // ensure /public/JL_logoPPright.png
               alt="PRAGMATIC PLAY"
               width={220}
               height={60}
