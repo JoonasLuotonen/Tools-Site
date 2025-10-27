@@ -1,48 +1,50 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="w-full">
-      {/* MIDSECTION (copy + layout per PDF) */}
-      <section className="section">
+      {/* MIDSECTION */}
+      <section className="py-14 md:py-20">
         <div className="container-narrow text-center">
-          <p className="uppercase text-xs tracking-widest text-black/60 mb-6">
-            TEST HOW CLEAR YOUR WEBSITE REALLY IS
-          </p>
+          {/* Wordmark above headline (as in your comp) */}
+          <div className="flex justify-center mb-6 md:mb-8">
+            <Image
+              src="/tools.png"
+              alt="TOOLS logo"
+              width={210}
+              height={60}
+              priority
+            />
+          </div>
 
-          <h1>
-            The Clarity Test helps designers, founders, and marketers see their
-            website through fresh eyes.
+          <h1 className="mt-0 mb-4 md:mb-5">
+            A second opinion for your website
           </h1>
 
-          <p>
-            It quickly scores your page across five axes – <strong>Message
-            Clarity</strong>, <strong>Visual Hierarchy</strong>,{" "}
-            <strong>Consistency</strong>, <strong>Conversion Focus</strong>, and{" "}
-            <strong>Brand Tone</strong> – revealing what feels clear and what
-            doesn’t.
+          <p className="text-black/70 mt-0 mb-8 md:mb-10">
+            Small tools and experiments to bring more clarity into design,
+            branding, and business.
           </p>
 
-          <p>
-            You’ll get instant, FREE, AI-assisted insights based on proven UX
-            and communication frameworks.
-          </p>
-
-          <div className="mt-8">
+          <div className="flex justify-center gap-4">
             <Link href="/clarity-test" className="btn btn-primary rounded-full">
               Go to Clarity Test
+            </Link>
+            <Link href="/about" className="btn btn-ghost rounded-full border border-black">
+              About
             </Link>
           </div>
         </div>
       </section>
 
-      {/* BREVO SECTION (neutral tone, centered placeholder) */}
+      {/* BREVO SECTION (neutral background, centered card placeholder) */}
       <section className="py-16 md:py-20 bg-[#f5f7f9]">
         <div className="container-narrow">
           <div className="card mx-auto max-w-[720px] p-6 md:p-10 text-center">
-            {/* —— If you already created /public/newsletter.html, uncomment the iframe and remove the placeholder div —— */}
+            {/* If you already created /public/newsletter.html, replace the placeholder with the iframe below */}
             {/*
             <iframe
               src="/newsletter.html"
@@ -50,13 +52,10 @@ export default function Home() {
               className="w-full h-[720px] border-none rounded-xl"
             />
             */}
-
-            {/* Placeholder (matches your PDF “Brevo form place holder”) */}
             <div className="border border-dashed border-black/20 rounded-xl py-16">
               <p className="text-black/60">Brevo form place holder</p>
               <p className="text-sm mt-2 text-black/50">
-                Paste your Brevo embed here or load it via{" "}
-                <code>/newsletter.html</code>.
+                Paste your Brevo embed here or serve it via <code>/newsletter.html</code>.
               </p>
             </div>
           </div>
