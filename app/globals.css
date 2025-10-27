@@ -1,140 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* --- existing content above --- */
 
-/* -------------------------------
-   Global design tokens
---------------------------------*/
-:root {
-  --radius: 1rem;
-}
-
-/* -------------------------------
-   Base typography & layout
---------------------------------*/
-html,
-body {
-  @apply bg-white text-black;
-  font-family: 'Special Gothic', Arial, sans-serif;
-}
-
-.container-narrow {
-  @apply max-w-3xl mx-auto px-4;
-}
-
-.container-wide {
-  @apply max-w-6xl mx-auto px-4;
-}
-
-/* -------------------------------
-   Headings
---------------------------------*/
+/* Ensure headings use Bebas Neue and allow crisp uppercase hero */
 h1 {
   @apply font-semibold text-4xl md:text-5xl leading-tight tracking-tight;
 }
-h2 {
-  @apply font-semibold text-2xl md:text-3xl leading-snug mt-10;
-}
-h3 {
-  @apply font-semibold text-xl md:text-2xl leading-snug mt-8;
-}
-p {
-  @apply text-base md:text-lg leading-7 mt-4;
+
+/* Optional: pill button helper to match the mock’s rounded style */
+.btn-pill {
+  @apply rounded-full px-6 py-3;
 }
 
-/* -------------------------------
-   Links & buttons
---------------------------------*/
-a {
-  @apply underline decoration-black/20 underline-offset-4 transition-colors;
-}
-a:hover {
-  @apply decoration-black;
-}
+/* Header/hero spacing helpers if needed later */
+/* .hero-tight { @apply pt-16 md:pt-20 pb-10; } */
 
-.btn {
-  @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-medium no-underline;
-}
-.btn-primary {
-  @apply bg-black text-white hover:bg-black/90;
-}
-.btn-yellow {
-  @apply bg-brand-yellow text-black hover:brightness-95;
-}
-.btn-blue {
-  @apply bg-brand-blue text-black hover:brightness-95;
-}
-.btn-ghost {
-  @apply bg-transparent text-black hover:bg-black/5;
-}
-
-/* -------------------------------
-   UI elements
---------------------------------*/
-.card {
-  @apply rounded-2xl border border-black/10 bg-white shadow-soft;
-}
-
-.input {
-  @apply w-full rounded-xl border border-black/10 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/20;
-}
-
-label {
-  @apply text-sm font-medium text-black/70;
-}
-
-nav a {
-  @apply no-underline;
-}
-
-header .nav-link {
-  @apply text-base font-medium text-black hover:opacity-80;
-}
-
+/* Keep footer light gray per mock */
 footer {
   @apply text-sm text-black/60;
-}
-
-.badge {
-  @apply inline-flex items-center rounded-full border border-black/10 px-3 py-1 text-sm;
-}
-
-.score {
-  @apply text-3xl md:text-4xl font-semibold;
-}
-
-.grid-cards {
-  @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
-}
-
-.section {
-  @apply py-12 md:py-20;
-}
-
-hr {
-  @apply my-10 border-black/10;
-}
-
-/* -------------------------------
-   Fonts
---------------------------------*/
-/* Bebas Neue for headings, Special Gothic for body.
-   If Special Gothic isn’t installed, falls back to Arial. */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
-/* If you later host Special Gothic yourself, replace this import with @font-face declarations. */
-@import url('https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400;700&display=swap');
-
-/* Body text */
-body {
-  font-family: 'Special Gothic', Arial, sans-serif;
-}
-
-/* Headings */
-h1,
-h2,
-h3,
-.font-heading {
-  font-family: 'Bebas Neue', Arial, sans-serif;
-  letter-spacing: 0.5px;
 }
