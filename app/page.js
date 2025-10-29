@@ -20,7 +20,7 @@ export default function Home() {
           </p>
 
           <p className="text-black/70">
-            It quickly scores your page across five axes –{" "}
+            It quickly evaluates your page across five axes –{" "}
             <strong>Message Clarity</strong>, <strong>Visual Hierarchy</strong>,{" "}
             <strong>Consistency</strong>, <strong>Conversion Focus</strong>, and{" "}
             <strong>Brand Tone</strong> – revealing what feels clear and what
