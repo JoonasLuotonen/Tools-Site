@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 // Minimal, script-free form that posts directly to Brevo.
-// This will SHOW immediately and WORK without any external JS/CSS.
+// Renders reliably without external JS/CSS.
 function NewsletterForm() {
   return (
     <form
@@ -119,7 +119,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEWSLETTER */}
+      {/* NEWSLETTER (no placeholders) */}
       <section className="py-16 md:py-20 bg-[#f5f7f9]">
         <div className="container-narrow">
           <div className="card mx-auto max-w-[720px] p-6 md:p-10">
