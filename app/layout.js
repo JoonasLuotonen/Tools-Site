@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         </main>
 
         {/* Footer */}
-        <footer className="w-full border-t border-black/10 bg-[#f5f7f9] mt-12">
+        <footer className="w-full border-t border-black/10 bg-[#ffe961] mt-12">
           <div className="max-w-5xl mx-auto py-12 flex flex-col items-center px-4">
 
     <a
