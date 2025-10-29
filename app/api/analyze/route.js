@@ -1,74 +1,63 @@
 // app/api/analyze/route.js
-
-export const runtime = "nodejs";       // ensure Node runtime for OpenAI SDK
-export const dynamic = "force-dynamic"; // avoid caching of POST results
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-// --- small helpers: safe text extraction and chunking ---
+// HTML → text helper
 async function fetchPageText(targetUrl) {
   const res = await fetch(targetUrl, { redirect: "follow" });
   const html = await res.text();
-
-  // ultra-simple extraction to keep current behavior stable
-  // (you can keep your existing parser if you already have one)
   const textOnly = html
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-
-  return textOnly.slice(0, 120000); // keep tokens in check
+  return textOnly.slice(0, 120000);
 }
 
 export async function POST(req) {
   try {
     const { url } = await req.json();
-    if (!url) {
-      return NextResponse.json({ error: "Missing URL" }, { status: 400 });
-    }
+    if (!url) return NextResponse.json({ error: "Missing URL" }, { status: 400 });
+
+    // 👇 lazy init so build doesn’t require a real key
+    const apiKey = process.env.OPENAI_API_KEY || "";
+    const openai = new OpenAI({ apiKey });
 
     const pageText = await fetchPageText(url);
 
-    // ---- PROMPT: adds CLARITY PROFILE ANALYSIS block (no numbers) ----
     const system = `
 You are Clarity Test, a practical website review assistant.
-Return clear, concise, *actionable* feedback in plain language.
-Do NOT include numeric scores or percentages. Avoid repeating the same generic tip across all sections.
+Return clear, concise, actionable feedback in plain language.
+No numeric scores or percentages. Avoid repeating the same generic tip.
 Respect variation: not every section needs bullets or a CTA.
 First, evaluate the page as a whole. Then give section-specific improvements.
-Output strictly in the JSON schema specified below.
+Output strictly in the JSON schema specified.
 `;
 
     const user = `
 Review the page content below.
-1) Produce a page-level "CLARITY PROFILE ANALYSIS" consisting of:
+
+1) Produce a page-level "CLARITY PROFILE ANALYSIS" with:
    - overview: 2–3 sentences describing what the page feels like overall (strengths + main impediment to clarity).
    - axes: five themes with Q&A-style mini-analyses:
-       * message: { question, analysis }           // main message clarity
-       * visualHierarchy: { question, analysis }    // eye flow & focus
-       * consistency: { question, analysis }        // labels, styles, nav
-       * conversion: { question, analysis }         // natural next step
-       * brandTone: { question, analysis }          // voice fit & clarity
-   Use qualitative wording only ("clear", "unclear", "cohesive", "competes", "inviting", etc.).
+       * message: { question, analysis }
+       * visualHierarchy: { question, analysis }
+       * consistency: { question, analysis }
+       * conversion: { question, analysis }
+       * brandTone: { question, analysis }
+   Use qualitative wording only.
 
-2) Then produce "sectionImprovements": a list of sections in reading order, with:
-   - title (short descriptive label; if unknown, infer one like "Hero" / "Product details" / "Footer")
-   - tips: an array of 1–3 *specific* improvements tailored to that section.
-     Avoid repeating the same generic tip for multiple sections unless it truly applies.
+2) Then produce "sections": a list of sections in reading order with:
+   - title (infer if missing, e.g. "Hero", "Product details", "Footer")
+   - tips: 1–3 specific, tailored improvements. Don’t repeat generic tips unless they truly apply.
 
-3) Consider rhythm and variation across sections. If a repeated pattern dulls impact,
-   prefer suggestions that *reduce repetition* instead of adding more identical structure.
+3) Consider rhythm/variation and prefer reducing repetition when helpful.
 
-Return JSON only, matching this schema exactly:
+Return JSON ONLY in this exact shape:
 
 {
   "profileAnalysis": {
@@ -95,19 +84,16 @@ ${pageText}
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       temperature: 0.3,
+      response_format: { type: "json_object" },
       messages: [
         { role: "system", content: system },
         { role: "user", content: user },
       ],
-      response_format: { type: "json_object" },
     });
 
     const raw = completion.choices?.[0]?.message?.content || "{}";
     const parsed = JSON.parse(raw);
 
-    // Backward compatibility:
-    // - old UI expects "sections". We keep that key the same.
-    // - new "profileAnalysis" is additive (safe to render or ignore).
     return NextResponse.json(
       {
         analyzedUrl: url,
