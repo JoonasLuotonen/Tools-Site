@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import BrevoForm from "../components/BrevoForm";
+
 
 export default function Home() {
   return (
@@ -49,7 +51,12 @@ export default function Home() {
             <div className="border border-dashed border-black/20 rounded-xl py-16">
               <p className="text-black/60">Brevo form placeholder</p>
               <p className="text-sm mt-2 text-black/50">
-                Paste your Brevo embed here or serve it via{" "}
+
+      {/* PASTE HERE: Brevo form on the homepage */}
+      <section className="mt-12">
+        <BrevoForm />
+      </section>
+        
                 <code>/newsletter.html</code>.
               </p>
             </div>
