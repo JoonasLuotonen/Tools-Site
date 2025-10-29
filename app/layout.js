@@ -1,11 +1,7 @@
 // app/layout.js
 import "./globals.css";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-
-// ✅ Dynamically import NavBar as a client component
-// (prevents "use client" requirement for the whole layout)
-const NavBar = dynamic(() => import("../components/NavBar"), { ssr: false });
+import NavBar from "../components/NavBar"; // client component is fine here
 
 export const metadata = {
   title: "TOOLS — Joonas Luotonen",
@@ -17,11 +13,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-white text-black flex flex-col min-h-screen">
-        {/* Header / Navigation */}
+        {/* Header */}
         <NavBar />
 
         {/* Page content */}
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          {children}
+        </main>
 
         {/* Footer */}
         <footer className="w-full border-t border-black/10 bg-[#f5f7f9] mt-12">
