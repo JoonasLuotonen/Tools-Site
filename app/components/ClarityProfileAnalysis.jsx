@@ -5,11 +5,11 @@ export default function ClarityProfileAnalysis({ data }) {
 
   const axes = data.axes || {};
   const rows = [
-    { key: "message", title: "Message",          question: axes.message?.question,          analysis: axes.message?.analysis },
+    { key: "message",         title: "Message",          question: axes.message?.question,         analysis: axes.message?.analysis },
     { key: "visualHierarchy", title: "Visual Hierarchy", question: axes.visualHierarchy?.question, analysis: axes.visualHierarchy?.analysis },
-    { key: "consistency", title: "Consistency",   question: axes.consistency?.question,      analysis: axes.consistency?.analysis },
-    { key: "conversion", title: "Conversion",     question: axes.conversion?.question,       analysis: axes.conversion?.analysis },
-    { key: "brandTone", title: "Brand Tone",      question: axes.brandTone?.question,        analysis: axes.brandTone?.analysis },
+    { key: "consistency",     title: "Consistency",      question: axes.consistency?.question,     analysis: axes.consistency?.analysis },
+    { key: "conversion",      title: "Conversion",       question: axes.conversion?.question,      analysis: axes.conversion?.analysis },
+    { key: "brandTone",       title: "Brand Tone",       question: axes.brandTone?.question,       analysis: axes.brandTone?.analysis },
   ];
 
   return (
