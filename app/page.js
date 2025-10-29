@@ -3,19 +3,16 @@
 import Link from "next/link";
 import BrevoForm from "../components/BrevoForm";
 
-
 export default function Home() {
   return (
     <main className="w-full">
       {/* HERO */}
       <section className="pt-16 md:pt-20 pb-10">
         <div className="container-narrow text-center">
-          {/* Headline (Bebas Neue, ALL CAPS) */}
-          <h1 className="mt-0 mb-4 md:mb-5 ">
+          <h1 className="mt-0 mb-4 md:mb-5">
             Test how clear your website really is
           </h1>
 
-          {/* Body copy (exact) */}
           <p className="text-black/70 mt-0">
             The Clarity Test helps designers, founders, and marketers see their
             website through fresh eyes.
@@ -34,7 +31,6 @@ export default function Home() {
             and communication frameworks.
           </p>
 
-          {/* Single primary CTA (no second button) */}
           <div className="mt-8">
             <Link href="/clarity" className="btn btn-primary btn-pill">
               Go to Clarity Test
@@ -43,23 +39,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BREVO SECTION (keep; with specified background tone) */}
+      {/* BREVO SECTION */}
       <section className="py-16 md:py-20 bg-[#f5f7f9]">
         <div className="container-narrow">
           <div className="card mx-auto max-w-[720px] p-6 md:p-10 text-center">
-            {/* Replace with your Brevo iframe/embed */}
-            <div className="border border-dashed border-black/20 rounded-xl py-16">
-              <p className="text-black/60">Brevo form placeholder</p>
-              <p className="text-sm mt-2 text-black/50">
-
-      {/* PASTE HERE: Brevo form on the homepage */}
-      <section className="mt-12">
-        <BrevoForm />
-      </section>
-        
-                <code>/newsletter.html</code>.
-              </p>
-            </div>
+            {/* Remove placeholder box */}
+            <BrevoForm />
           </div>
         </div>
       </section>
