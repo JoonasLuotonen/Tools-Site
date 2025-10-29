@@ -24,6 +24,13 @@ export default function RootLayout({ children }) {
         {/* Footer */}
         <footer className="w-full border-t border-black/10 bg-[#f5f7f9] mt-12">
           <div className="max-w-5xl mx-auto py-12 flex flex-col items-center px-4">
+
+    <a
+      href="https://www.joonasluotonen.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+          
             <Image
               src="/JL_logoPPright.png"
               alt="Pragmatic Play logo"
