@@ -9,7 +9,7 @@ export default function Home() {
       <section className="pt-16 md:pt-20 pb-10">
         <div className="container-narrow text-center">
           {/* Headline (Bebas Neue, ALL CAPS) */}
-          <h1 className="mt-0 mb-4 md:mb-5 uppercase">
+          <h1 className="mt-0 mb-4 md:mb-5 ">
             Test how clear your website really is
           </h1>
 
