@@ -1,7 +1,6 @@
 // app/layout.js
 import "./globals.css";
-import Image from "next/image";
-import NavBar from "../components/NavBar"; // client component is fine here
+import Link from "next/link";
 
 export const metadata = {
   title: "TOOLS — Joonas Luotonen",
@@ -12,34 +11,37 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-white text-black flex flex-col min-h-screen">
-        {/* Header */}
-        <NavBar />
+      <body>
+        <header className="py-5 md:py-6">
+          <div className="container-narrow flex items-center justify-between">
+            <Link href="/" className="no-underline font-bold tracking-wide uppercase">
+              Tools
+            </Link>
+            <nav className="flex items-center gap-6 text-sm uppercase font-bold tracking-wide">
+              <Link href="/clarity" className="hover:opacity-80">
+                Clarity Test
+              </Link>
+              <Link href="/newsletter" className="hover:opacity-80">
+                Newsletter
+              </Link>
+            </nav>
+          </div>
+        </header>
 
-        {/* Page content */}
-        <main className="flex-1">
-          {children}
-        </main>
+        {children}
 
-        {/* Footer */}
-        <footer className="w-full border-t border-black/10 bg-[#ffe961] mt-12">
-          <div className="max-w-5xl mx-auto py-12 flex flex-col items-center px-4">
-
-    <a
-      href="https://www.joonasluotonen.com"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-          
-            <Image
-              src="/JL_logoPPright.png"
-              alt="Pragmatic Play logo"
-              width={220}
-              height={60}
-              priority
-            />
-            <p className="mt-4 text-sm text-black/60 text-center">
-              © {new Date().getFullYear()} Joonas Luotonen · Pragmatic Play
+        <footer className="mt-16 border-t border-black/10">
+          <div className="container-narrow py-8">
+            <p className="mt-0 text-sm text-black/60 text-center">
+              © {new Date().getFullYear()} Joonas Luotonen ·{" "}
+              <a
+                href="https://joonasluotonen.com"
+                className="underline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Pragmatic Play
+              </a>
             </p>
           </div>
         </footer>
