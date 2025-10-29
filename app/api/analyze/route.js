@@ -1,11 +1,13 @@
 // app/api/analyze/route.js
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// optional belt & suspenders for Next build to not cache this route:
+export const revalidate = 0;
 
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-// HTML → text helper
+// HTML → text helper (pure string ops; safe at build)
 async function fetchPageText(targetUrl) {
   const res = await fetch(targetUrl, { redirect: "follow" });
   const html = await res.text();
@@ -18,18 +20,8 @@ async function fetchPageText(targetUrl) {
   return textOnly.slice(0, 120000);
 }
 
-export async function POST(req) {
-  try {
-    const { url } = await req.json();
-    if (!url) return NextResponse.json({ error: "Missing URL" }, { status: 400 });
-
-    // 👇 lazy init so build doesn’t require a real key
-    const apiKey = process.env.OPENAI_API_KEY || "";
-    const openai = new OpenAI({ apiKey });
-
-    const pageText = await fetchPageText(url);
-
-    const system = `
+function makePrompt(url, pageText) {
+  const system = `
 You are Clarity Test, a practical website review assistant.
 Return clear, concise, actionable feedback in plain language.
 No numeric scores or percentages. Avoid repeating the same generic tip.
@@ -38,7 +30,7 @@ First, evaluate the page as a whole. Then give section-specific improvements.
 Output strictly in the JSON schema specified.
 `;
 
-    const user = `
+  const user = `
 Review the page content below.
 
 1) Produce a page-level "CLARITY PROFILE ANALYSIS" with:
@@ -80,6 +72,28 @@ PAGE_URL: ${url}
 PAGE_TEXT (truncated):
 ${pageText}
 `;
+
+  return { system, user };
+}
+
+export async function POST(req) {
+  try {
+    const { url } = await req.json();
+    if (!url) return NextResponse.json({ error: "Missing URL" }, { status: 400 });
+
+    // 👇 Only read the env and construct the client INSIDE the handler
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      // Don’t crash the build — return a friendly error when called without a key
+      return NextResponse.json(
+        { error: "Server is missing OPENAI_API_KEY. Configure env and retry." },
+        { status: 500 }
+      );
+    }
+    const openai = new OpenAI({ apiKey });
+
+    const pageText = await fetchPageText(url);
+    const { system, user } = makePrompt(url, pageText);
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
