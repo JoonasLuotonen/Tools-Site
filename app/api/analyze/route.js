@@ -1,9 +1,11 @@
 // app/api/analyze/route.js
-import { NextResponse } from "next/server";
-import OpenAI from "openai";
 
 export const runtime = "nodejs";       // ensure Node runtime for OpenAI SDK
 export const dynamic = "force-dynamic"; // avoid caching of POST results
+
+import { NextResponse } from "next/server";
+import OpenAI from "openai";
+
 
 
 const openai = new OpenAI({
