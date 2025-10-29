@@ -2,6 +2,10 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
+export const runtime = "nodejs";       // ensure Node runtime for OpenAI SDK
+export const dynamic = "force-dynamic"; // avoid caching of POST results
+
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
