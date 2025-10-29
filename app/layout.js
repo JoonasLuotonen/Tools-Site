@@ -1,7 +1,11 @@
-// NO "use client" here
+// app/layout.js
 import "./globals.css";
 import Image from "next/image";
-import NavBar from "../components/NavBar";
+import dynamic from "next/dynamic";
+
+// ✅ Dynamically import NavBar as a client component
+// (prevents "use client" requirement for the whole layout)
+const NavBar = dynamic(() => import("../components/NavBar"), { ssr: false });
 
 export const metadata = {
   title: "TOOLS — Joonas Luotonen",
@@ -12,20 +16,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-white text-black">
+      <body className="bg-white text-black flex flex-col min-h-screen">
+        {/* Header / Navigation */}
         <NavBar />
-        {children}
-        <footer className="w-full border-t border-black/10 bg-[#f5f7f9]">
-          <div className="container-wide py-12 flex flex-col items-center">
+
+        {/* Page content */}
+        <main className="flex-1">{children}</main>
+
+        {/* Footer */}
+        <footer className="w-full border-t border-black/10 bg-[#f5f7f9] mt-12">
+          <div className="max-w-5xl mx-auto py-12 flex flex-col items-center px-4">
             <Image
               src="/JL_logoPPright.png"
-              alt="PRAGMATIC PLAY"
+              alt="Pragmatic Play logo"
               width={220}
               height={60}
               priority
             />
-            <p className="mt-4 text-sm text-black/60">
-              © {new Date().getFullYear()} Joonas Luotonen. Pragmatic Play.
+            <p className="mt-4 text-sm text-black/60 text-center">
+              © {new Date().getFullYear()} Joonas Luotonen · Pragmatic Play
             </p>
           </div>
         </footer>
