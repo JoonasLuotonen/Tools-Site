@@ -30,7 +30,7 @@ export default function Home() {
         <div className="container-narrow">
           <div className="mx-auto max-w-[520px] p-6 md:p-10 rounded-2xl bg-white shadow-sm border border-black/10">
             <Image
-              src="/newsletter-image.jpg" // ← replace with your own image in /public folder
+              src="/jplay-logo.png" // ← replace with your own image in /public folder
               width={500}
               height={300}
               alt="Newsletter"
@@ -44,7 +44,7 @@ export default function Home() {
               Sent once a month, max!
             </p>
             <Link
-              href="/newsletter"
+              href="https://679d9eaa.sibforms.com/serve/MUIFAK3VvvjaVwEp1qUFHb8gTIon8Gp3MFwEivdiKtC7VD_Pq6_or4l9R94AabQhC2OsYJ6KQoHXN8R-4fGeTMfeyu5wszgIOMfNkHxMOlY95xzVZJ7MpwntjXTlCdFl62eOyuIzKt0pm31HPl21uFp8QEVfO5e-FJTQADorXEpPmpCs0K6XACNiGLsAGK2YRxrIXZDCrh-eIK4vtQ=="
               className="inline-block btn btn-primary btn-pill"
             >
               Join now
