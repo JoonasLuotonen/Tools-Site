@@ -12,9 +12,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        {/* Header */}
         <header className="py-5 md:py-6">
           <div className="container-narrow flex items-center justify-between">
-            <Link href="/" className="no-underline font-bold tracking-wide uppercase">
+            <Link
+              href="/"
+              className="no-underline font-bold tracking-wide uppercase"
+            >
               Tools
             </Link>
             <nav className="flex items-center gap-6 text-sm uppercase font-bold tracking-wide">
@@ -28,8 +32,10 @@ export default function RootLayout({ children }) {
           </div>
         </header>
 
+        {/* Page content */}
         {children}
 
+        {/* Footer (fixed: proper <a> tag) */}
         <footer className="mt-16 border-t border-black/10">
           <div className="container-narrow py-8">
             <p className="mt-0 text-sm text-black/60 text-center">
