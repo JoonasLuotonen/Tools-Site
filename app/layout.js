@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
         {/* Page content */}
         {children}
 
-        {/* Footer (fixed: proper <a> tag) */}
+        {/* Footer (fixed anchor) */}
         <footer className="mt-16 border-t border-black/10">
           <div className="container-narrow py-8">
             <p className="mt-0 text-sm text-black/60 text-center">
