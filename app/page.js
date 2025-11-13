@@ -33,13 +33,6 @@ export default function Home() {
       <section className="py-16 md:py-20 bg-[#f5f7f9] text-center">
         <div className="container-narrow">
           <div className="mx-auto max-w-[520px] p-6 md:p-10 rounded-2xl bg-white shadow-sm border border-black/10">
-            <Image
-              src="/newsletter-image.jpg" // put an image in /public
-              width={500}
-              height={300}
-              alt="Newsletter"
-              className="rounded-lg mx-auto mb-6"
-            />
             <h3 className="text-2xl font-semibold mb-3">
               Subscribe my newsletter
             </h3>
