@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
                 About
               </Link>
               <Link
-                href="https://joonasluotonen.com"
+                href="https://www.joonasluotonen.com"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center hover:opacity-80"
