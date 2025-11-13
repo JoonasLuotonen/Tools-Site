@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
             <p className="mt-0 text-sm text-black/60 text-center">
               © {new Date().getFullYear()} Joonas Luotonen ·{" "}
               <a
-                href="https://joonasluotonen.com"
+                href="https://www.joonasluotonen.com"
                 className="underline"
                 target="_blank"
                 rel="noreferrer"
