@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <header className="py-5 md:py-6">
           <div className="container-narrow flex items-center justify-between">
             {/* Left: TOOLS logo linking to home */}
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center cursor-pointer">
               <Image
                 src="/tools.png"
                 alt="TOOLS"
