@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
                 alt="TOOLS"
                 width={40}
                 height={40}
+                unoptimized
                 className="h-10 w-auto object-contain"
               />
             </Link>
