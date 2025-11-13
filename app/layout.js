@@ -1,6 +1,7 @@
 // app/layout.js
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "TOOLS — Joonas Luotonen",
@@ -15,18 +16,38 @@ export default function RootLayout({ children }) {
         {/* Header */}
         <header className="py-5 md:py-6">
           <div className="container-narrow flex items-center justify-between">
-            <Link
-              href="/"
-              className="no-underline font-bold tracking-wide uppercase"
-            >
-              Tools
+            {/* Left: TOOLS logo linking to home */}
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/tools.png"
+                alt="TOOLS"
+                width={40}
+                height={40}
+                className="h-10 w-auto object-contain"
+              />
             </Link>
+
+            {/* Right: Nav links + JL monogram */}
             <nav className="flex items-center gap-6 text-sm uppercase font-bold tracking-wide">
               <Link href="/clarity" className="hover:opacity-80">
                 Clarity Test
               </Link>
-              <Link href="/newsletter" className="hover:opacity-80">
-                Newsletter
+              <Link href="/about" className="hover:opacity-80">
+                About
+              </Link>
+              <Link
+                href="https://joonasluotonen.com"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center hover:opacity-80"
+              >
+                <Image
+                  src="/JL-monogrammiEXTENDED.png"
+                  alt="Joonas Luotonen"
+                  width={40}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                />
               </Link>
             </nav>
           </div>
