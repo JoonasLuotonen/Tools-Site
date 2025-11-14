@@ -21,8 +21,8 @@ export default function RootLayout({ children }) {
               <Image
                 src="/tools.png"
                 alt="TOOLS"
-                width={40}
-                height={40}
+                width={120}
+                height={120}
                 unoptimized
                 className="h-10 w-auto object-contain"
               />
