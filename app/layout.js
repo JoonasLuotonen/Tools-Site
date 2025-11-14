@@ -57,22 +57,27 @@ export default function RootLayout({ children }) {
         {/* Page content */}
         {children}
 
-        {/* Footer (fixed anchor) */}
-        <footer className="mt-16 border-t border-black/10">
-          <div className="container-narrow py-8">
-            <p className="mt-0 text-sm text-black/60 text-center">
-              © {new Date().getFullYear()} Joonas Luotonen ·{" "}
-              <a
-                href="https://www.joonasluotonen.com"
-                className="underline"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Pragmatic Play
-              </a>
-            </p>
-          </div>
-        </footer>
+        {/* Footer */}
+<footer className="mt-16 bg-[#FBE87F] py-10">
+  <div className="container-narrow flex justify-center">
+    <a
+      href="https://www.joonasluotonen.com"
+      target="_blank"
+      rel="noreferrer"
+      className="inline-block"
+    >
+      <Image
+        src="/JL_logoPPright.png"
+        alt="Joonas Luotonen Logo"
+        width={80}
+        height={80}
+        className="w-20 h-auto object-contain"
+        unoptimized
+      />
+    </a>
+  </div>
+</footer>
+
       </body>
     </html>
   );
